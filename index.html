@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SHEIS — Smart Hostel Energy Intelligence System</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- PDF library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Floating background orbs -->
+  <i class="orb o1"></i>
+  <i class="orb o2"></i>
+
+  <!-- All pages are rendered here by script.js -->
+  <div id="app"></div>
+
+  <!-- Energy Fingerprint pop-up -->
+  <div class="ovl" id="ovl" onclick="if (event.target === this) closeFP()">
+    <div class="sheet" id="sheet"></div>
+  </div>
+
+  <div id="toast"></div>
+
+  <p class="ft">
+    Demo data: simulated sensor stream. Connect your ESP32 API by replacing RM and the push() function in script.js.
+  </p>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
