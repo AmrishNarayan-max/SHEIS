@@ -118,12 +118,12 @@ const S = {};       // live power series per room
 
 
 /* ---------- Enable download buttons if saving is allowed ---------- */
-(async () => {
-  try {
-    DL = await window.claude.use('downloads');
-  } catch (e) {}
-  if (DL) document.body.classList.add('hasdl');
-})();
+// (async () => {
+//   try {
+//     DL = await window.claude.use('downloads');
+//   } catch (e) {}
+//   if (DL) document.body.classList.add('hasdl');
+// })();
 
 
 /* ---------- Live data simulation ---------- */
@@ -168,14 +168,16 @@ function toast(m) {
   toast.t = setTimeout(() => t.classList.remove('show'), 2600);
 }
 
+document.body.classList.add('hasdl');
+
 async function save(n, d) {
-  if (!DL) return toast('Downloads are not available here');
-  try {
-    await DL.save({ filename: n, data: d });
-    toast('Saved ' + n);
-  } catch (e) {
-    if (e.code !== 'declined') toast('Could not save the file');
-  }
+  const blob = d instanceof Blob ? d : new Blob([d]);
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = n;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('Saved ' + n);
 }
 
 
